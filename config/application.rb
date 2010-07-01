@@ -44,3 +44,5 @@ module DynamicAttributes
     config.filter_parameters += [:password]
   end
 end
+
+require 'auto_classes'
