@@ -7,6 +7,8 @@ class AttributeDefinition < ActiveRecord::Base
 
   validates_uniqueness_of :name
 
+  belongs_to :classification, :touch => true
+
   def default
     'default value'
   end

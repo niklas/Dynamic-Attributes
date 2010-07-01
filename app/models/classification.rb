@@ -9,6 +9,10 @@ class Classification < ActiveRecord::Base
   #
   # or a combination of both
   #
+  # TODO must detect if something changes, especially under production
+  # maybe through a global timestamp that correponds to
+  #   Classification.lastest.updated_at
+  #
   validates_presence_of :name
 
   has_many :attribute_definitions
