@@ -34,11 +34,11 @@ group :development do
 end
 
 group :test do
-  gem "rspec-rails",        ">= 2.0.0.beta.10", :git => "git://github.com/rspec/rspec-rails.git"
-  gem "rspec",              ">= 2.0.0.beta.10", :git => "git://github.com/rspec/rspec.git"
-  gem "rspec-core",         ">= 2.0.0.beta.10", :git => "git://github.com/rspec/rspec-core.git"
-  gem "rspec-expectations", ">= 2.0.0.beta.10", :git => "git://github.com/rspec/rspec-expectations.git"
-  gem "rspec-mocks",        ">= 2.0.0.beta.10", :git => "git://github.com/rspec/rspec-mocks.git"
+  gem "rspec-rails",        "2.0.0.beta.10"
+  gem "rspec",              "2.0.0.beta.10"
+  gem "rspec-core",         "2.0.0.beta.10"
+  gem "rspec-expectations", "2.0.0.beta.10"
+  gem "rspec-mocks",        "2.0.0.beta.10"
 
   gem 'redgreen'
 
