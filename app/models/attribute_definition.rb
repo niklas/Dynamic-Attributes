@@ -4,4 +4,8 @@ class AttributeDefinition < ActiveRecord::Base
   validates_format_of :name, :with => /[a-z]+/
 
   validates_inclusion_of :data_type, :in => %w(String Integer) # usw
+
+  def default
+    'default value'
+  end
 end

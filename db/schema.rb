@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100701105042) do
+ActiveRecord::Schema.define(:version => 20100701123353) do
 
   create_table "attribute_definitions", :force => true do |t|
     t.string   "name"
@@ -22,6 +22,14 @@ ActiveRecord::Schema.define(:version => 20100701105042) do
   create_table "classifications", :force => true do |t|
     t.string   "name"
     t.integer  "parent_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "product_attributes", :force => true do |t|
+    t.integer  "product_id"
+    t.integer  "attribute_definition_id"
+    t.string   "value"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
