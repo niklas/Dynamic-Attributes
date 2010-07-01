@@ -1,4 +1,14 @@
 class Classification < ActiveRecord::Base
+  # TODO don't create constants that may conflict with those build in or later
+  # defined - it is insecure as hell.and _will_ lead to headaching bugs
+  # Ideas:
+  # 1) namespace the classes under the base klass
+  #     Product::Clothes < Product::Base
+  # 2) name the classes randomly, but repeatable (for example from its id)
+  #     Product_Magic_2342 < Product
+  #
+  # or a combination of both
+  #
   validates_presence_of :name
 
   has_many :attribute_definitions
@@ -31,6 +41,7 @@ class Classification < ActiveRecord::Base
   protected
 
   before_validation :constant_must_not_be_defined, :on => :create
+  # FIXME this may not always inhibit redefining standard classes because auf AS' autoloading
   def constant_must_not_be_defined
     if name.present?
       if Object.const_defined?(name.to_sym)

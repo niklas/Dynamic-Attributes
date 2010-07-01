@@ -5,6 +5,8 @@ class AttributeDefinition < ActiveRecord::Base
 
   validates_inclusion_of :data_type, :in => %w(String Integer) # usw
 
+  validates_uniqueness_of :name
+
   def default
     'default value'
   end
