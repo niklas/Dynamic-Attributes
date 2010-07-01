@@ -16,11 +16,11 @@ class Product < ActiveRecord::Base
   end
 
   def read_extra_attribute(attribute_name)
-    extra_attribute_value_for_attribute(attribute_name).value
+    extra_attribute_value_for_attribute(attribute_name.to_sym).value
   end
 
   def write_extra_attribute(attribute_name, value)
-    extra_attribute_value_for_attribute(attribute_name).value = value
+    extra_attribute_value_for_attribute(attribute_name.to_sym).value = value
   end
 
   # Fetches or creates the record that holds this exta attribute's value
@@ -30,14 +30,14 @@ class Product < ActiveRecord::Base
       defi = find_attribute_definition(attribute_name)
       pa = product_attributes.build(:attribute_definition => defi)
       pa.product = self
-      pa.value = self.class.classifications.attribute_definitions.find_by_name(attribute_name).default
-      efv.save
+      pa.value = defi.default
+      pa.save unless new_record?
     end
-    efv
+    pa
   end
 
   def find_attribute_definition(attribute_name)
-    classification.attribute_definitions.find_by_name(attribute_name)
+    classification.attribute_definitions.find_by_name(attribute_name.to_s) || raise(ArgumentError, "unknown attribute: #{attribute_name}")
   end
 
 end
