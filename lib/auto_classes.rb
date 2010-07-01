@@ -8,9 +8,15 @@ module ConstMissingFindsClassifications
       eval %Q~class ::#{name} < Product;end~
       klass = const_get(name)
       classification.apply_to(klass)
+      klass
     else
       super
     end
+  end
+
+  def remove_const_if_exists(name)
+    name = name.to_sym
+    remove_const(name) if const_defined?(name)
   end
 end
 

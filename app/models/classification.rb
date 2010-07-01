@@ -23,7 +23,24 @@ class Classification < ActiveRecord::Base
     end
   end
 
-  def define_attribute!(name, data_type)
-    attribute_definitions.create! :name => name.to_s, :data_type => data_type.to_s
+  def define_attribute!(attribute_name, data_type)
+    Object.remove_const_if_exists(name)
+    attribute_definitions.create! :name => attribute_name.to_s, :data_type => data_type.to_s
+  end
+
+  protected
+
+  before_validation :constant_must_not_be_defined, :on => :create
+  def constant_must_not_be_defined
+    if name.present?
+      if Object.const_defined?(name.to_sym)
+        errors.add :name, "already defined #{name}"
+      end
+    end
+  end
+
+  after_destroy :remove_constant
+  def remove_constant
+    Object.remove_const_if_exists(name)
   end
 end
