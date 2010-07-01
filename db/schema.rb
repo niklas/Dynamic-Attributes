@@ -9,7 +9,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100701104859) do
+ActiveRecord::Schema.define(:version => 20100701105042) do
+
+  create_table "attribute_definitions", :force => true do |t|
+    t.string   "name"
+    t.string   "data_type"
+    t.integer  "classification_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "classifications", :force => true do |t|
     t.string   "name"
